@@ -1,17 +1,22 @@
-import { defineConfig, envField } from "astro/config";
+import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
-import vercel from "@astrojs/vercel";
 
 export default defineConfig({
+  site: 'https://waltercode.github.io',
+  // This repository is deployed as the waltercode.github.io user site, not a
+  // project site. A project base here would make every generated asset 404.
+  base: '/',
+  trailingSlash: 'always',
+  outDir: './dist',
+  output: 'static',
   vite: {
     plugins: [tailwindcss()],
-  },
-  env: {
-    schema: {
-      RESEND_API_KEY: envField.string({ context: "server", access: "secret" }),
-      MY_EMAIL: envField.string({ context: "server", access: "secret" }),
+    build: {
+      minify: 'terser',
+      sourcemap: false,
     },
   },
-  output: "server",
-  adapter: vercel(),
+  build: {
+    assets: 'assets',
+  },
 });

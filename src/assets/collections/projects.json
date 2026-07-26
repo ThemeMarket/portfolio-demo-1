@@ -1,26 +1,34 @@
 [
   {
-    "name": "GotoSend",
-    "description": "E-commerce for selling remittances, mobile recharges and gift cards.",
+    "name": "Sistema de Gestión Hotelera",
+    "description": "Plataforma para administrar reservas, huéspedes, habitaciones, pagos y reportes operativos de un hotel.",
     "urlImg": "/projects/gotosend.webp",
-    "link": "https://gotosend.com"
+    "technologies": ["Laravel", "Livewire", "MySQL"],
+    "github": "https://github.com/TU_USUARIO/sistema-gestion-hotelera",
+    "demo": "https://demo.example.com/sistema-gestion-hotelera"
   },
   {
-    "name": "D-Kanto",
-    "description": "E-commerce website for selling technological products.",
+    "name": "Sistema POS para Tienda de Calzado",
+    "description": "Punto de venta con inventario por talla, control de caja, clientes y facturación para comercio minorista.",
     "urlImg": "/projects/d-kanto.webp",
-    "link": "https://d-kanto.onrender.com"
+    "technologies": ["Laravel", "Bootstrap", "MySQL"],
+    "github": "https://github.com/TU_USUARIO/pos-tienda-calzado",
+    "demo": "https://demo.example.com/pos-tienda-calzado"
   },
   {
-    "name": "D-Kanto Admins",
-    "description": "Admin Dashboard for an E-commerce website",
+    "name": "Sistema de Gestión de Prácticas Profesionales",
+    "description": "Portal académico para seguimiento de prácticas, calendario de actividades, evaluación y generación de informes PDF.",
     "urlImg": "/projects/d-kanto-admin.webp",
-    "link": "https://d-kanto-admin.onrender.com"
+    "technologies": ["Laravel", "Livewire", "Calendar", "PDF"],
+    "github": "https://github.com/TU_USUARIO/gestion-practicas-profesionales",
+    "demo": "https://demo.example.com/gestion-practicas"
   },
   {
-    "name": "Amazon Redesign Thinking",
-    "description": "Amazon Clon",
+    "name": "Dashboard Administrativo",
+    "description": "Panel de indicadores para centralizar métricas operativas, reportes y seguimiento de procesos administrativos.",
     "urlImg": "/projects/amazon-redesign-thinking.webp",
-    "link": "https://amazon-front-gamma.vercel.app"
+    "technologies": ["Astro", "TypeScript", "Chart.js"],
+    "github": "https://github.com/TU_USUARIO/dashboard-administrativo",
+    "demo": "https://demo.example.com/dashboard-administrativo"
   }
 ]

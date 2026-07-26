@@ -1,24 +1,23 @@
 ---
-import { Image } from "astro:assets";
-
 const { pathname } = Astro.url;
+const base = import.meta.env.BASE_URL;
 
 let links: string[];
-const linkNames = ["Home", "About", "Projects", "Services"];
+const linkNames = ["Inicio", "Sobre mí", "Tecnologías", "Habilidades", "Proyectos", "Contacto"];
 
-if (pathname == "/") {
-  links = ["#home", "#about", "#projects", "#services"];
+if (pathname === base || pathname === "/") {
+  links = ["#home", "#about", "#technologies", "#skills", "#projects", "#contact"];
 } else {
-  links = ["/", "/#about", "/projects", "/#services"];
+  links = [base, `${base}#about`, `${base}#technologies`, `${base}#skills`, `${base}projects/`, `${base}#contact`];
 }
 ---
 
 <header
-  class="max-w-screen-lg mx-auto flex flex-wrap justify-between py-1 px-4 sm:px-6 items-center sticky top-0 z-50 lg:rounded-b-md border border-gray-300 dark:border-neutral-800 backdrop-blur-xs"
+  class="max-w-screen-lg mx-auto flex flex-wrap justify-between py-1 px-4 sm:px-6 items-center sticky top-0 z-50 lg:rounded-b-md border border-gray-300 dark:border-neutral-800 backdrop-blur-xs bg-white/95 dark:bg-gray-950/95"
 >
-  <a href="/">
-    <Image
-      src="/logo.webp"
+  <a href={base} class="hover:scale-110 transition-transform duration-300">
+    <img
+      src={`${base}logo.webp`}
       class="size-16 object-contain object-center bg-transparent"
       alt="Logo"
       width={64}
@@ -33,7 +32,7 @@ if (pathname == "/") {
       title="Theme Toggle"
       aria-label="Theme Toggle"
       id="theme-toggle"
-      class="flex items-center gap-2 dark:text-white"
+      class="flex items-center gap-2 dark:text-white transition-transform hover:rotate-180 duration-300"
     >
       <svg
         id="theme-sun-icon"
@@ -64,7 +63,7 @@ if (pathname == "/") {
       title="Navbar Toggle"
       aria-label="Navbar Toggle"
       id="navbar-toggle"
-      class="sm:hidden dark:text-white"
+      class="sm:hidden dark:text-white transition-transform hover:scale-110"
     >
       <svg
         aria-label="Menu Icon"
@@ -104,7 +103,7 @@ if (pathname == "/") {
           <li>
             <a
               href={link}
-              class="hover:text-gray-950 dark:hover:text-white dark:text-gray-400"
+              class="relative hover:text-gray-950 dark:hover:text-white dark:text-gray-400 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-blue-500 after:to-purple-500 hover:after:w-full after:transition-all after:duration-300"
             >
               {linkNames[i]}
             </a>
@@ -178,3 +177,4 @@ if (pathname == "/") {
     themeSunIcon.classList.remove("hidden");
   }
 </script>
+

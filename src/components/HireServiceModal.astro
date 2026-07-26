@@ -67,7 +67,6 @@ import SuccessModal from "./SuccessModal.astro";
 <ErrorModal />
 
 <script>
-  import { actions } from "astro:actions";
   import { Modal } from "../utils/modal";
 
   window.addEventListener("DOMContentLoaded", () => {
@@ -97,19 +96,16 @@ import SuccessModal from "./SuccessModal.astro";
       scheduleMeetingForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const serviceId = localStorage.getItem("currentServiceId")!;
         const formData = new FormData(scheduleMeetingForm);
-        formData.append("serviceId", serviceId);
+        const email = String(formData.get("email") ?? "");
+        const message = String(formData.get("message") ?? "");
+        const serviceId = localStorage.getItem("currentServiceId") ?? "";
+        const subject = encodeURIComponent(`Solicitud de servicio ${serviceId}`);
+        const body = encodeURIComponent(`Correo: ${email}\n\nMensaje: ${message}`);
 
-        const { error } = await actions.hireService(formData);
-
+        window.location.href = `mailto:placeholder@ejemplo.com?subject=${subject}&body=${body}`;
         hireServiceModal.hide();
-
-        if (!error) {
-          document.getElementById("openSuccessModalBtn")?.click();
-        } else {
-          document.getElementById("openErrorModalBtn")?.click();
-        }
+        document.getElementById("openSuccessModalBtn")?.click();
 
         scheduleMeetingForm.reset();
       });

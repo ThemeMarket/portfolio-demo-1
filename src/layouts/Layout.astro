@@ -3,21 +3,23 @@ import background from "../assets/background.svg";
 import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
 import "../styles/global.css";
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/webp" href="/logo.webp" />
+    <link rel="icon" type="image/webp" href={`${base}logo.webp`} />
     <meta name="generator" content={Astro.generator} />
-    <title>PortfolioDemo1</title>
+    <title>Walter Joel Castil Corea | Ingeniero en Sistemas</title>
 
     <!-- Metas -->
     <meta
       name="description"
-      content="A small minimalist web developer portfolio built with Astro and TailwindCSS"
+      content="Portafolio de Walter Joel Castil Corea, Ingeniero en Sistemas de Información especializado en desarrollo web y automatización."
     />
   </head>
   <body class="dark:bg-gray-950">

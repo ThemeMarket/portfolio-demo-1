@@ -8,17 +8,19 @@ import EXPERIENCES from "../assets/collections/experiences.json";
 import PROJECTS from "../assets/collections/projects.json";
 import SERVICES from "../assets/collections/services.json";
 import HireServiceModal from "../components/HireServiceModal.astro";
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout>
   <section id="home" class="flex flex-col">
     <article class="text-gray-950 dark:text-white text-pretty mx-auto">
       <h1 class="text-4xl md:text-6xl font-bold max-w-screen-sm">
-        Welcome 👋, I'm Carlos Miguel
+        Hola 👋, soy Walter Joel Castil Corea
       </h1>
       <div class="flex flex-col gap-6 mt-8">
         <h2 class="font-bold text-xl sm:text-2xl">
-          Available to help you with:
+          Ingeniero en Sistemas de Información especializado en:
         </h2>
         <div class="flex flex-col sm:flex-row gap-4 overflow-hidden relative">
           <Card className="card">
@@ -36,14 +38,13 @@ import HireServiceModal from "../components/HireServiceModal.astro";
               >
             </div>
             <h2 class="font-semibold text-lg sm:text-xl md:text-2xl">
-              Frontend Development
+              Desarrollo Web
             </h2>
             <p class="text-gray-600 text-sm sm:text-base dark:text-gray-400">
-              Expert in creating dynamic and responsive user interfaces using
+              Desarrollo de aplicaciones modernas, responsivas y escalables con
               <span class="text-blue-700 dark:text-blue-500"
-                >Angular and Astro</span
-              >. I bring your designs to life with clean, efficient, and
-              maintainable code.
+                >Astro y JavaScript</span
+              >, cuidando la experiencia de usuario y la mantenibilidad del código.
             </p>
           </Card>
           <Card className="card">
@@ -61,14 +62,12 @@ import HireServiceModal from "../components/HireServiceModal.astro";
               >
             </div>
             <h2 class="font-semibold text-lg sm:text-xl md:text-2xl">
-              Backend Development
+              Automatización de procesos
             </h2>
             <p class="text-gray-600 text-sm sm:text-base dark:text-gray-400">
-              Skilled in building robust and scalable server-side applications
-              with <span class="text-yellow-700 dark:text-yellow-500"
-                >NestJS and Express</span
-              >. I ensure your backend is secure, efficient, and seamlessly
-              integrated with your frontend.
+              Soluciones administrativas eficientes con <span class="text-yellow-700 dark:text-yellow-500"
+                >Laravel, PHP y MySQL</span
+              >, integradas con interfaces claras y procesos confiables.
             </p>
           </Card>
         </div>
@@ -79,7 +78,7 @@ import HireServiceModal from "../components/HireServiceModal.astro";
     <h2
       class="text-2xl md:text-4xl font-bold text-gray-950 dark:text-white mb-8"
     >
-      About Me
+      Sobre mí
     </h2>
     <article class="flex flex-col md:flex-row gap-4 p-4">
       <Card className="text-gray-600 dark:text-gray-400 h-fit">
@@ -87,35 +86,35 @@ import HireServiceModal from "../components/HireServiceModal.astro";
           <h3
             class="text-lg sm:text-xl font-semibold text-gray-950 dark:text-white"
           >
-            Short Bio 🧬
+            Perfil profesional 🧬
           </h3>
           <p>
-            I'm an experienced FullStack Web Developer focused on the NestJS and
-            Angular ecosystem. I'm compromised with the quality of the code and
-            the reliability of the websites I build.
+            Soy Ingeniero en Sistemas de Información con experiencia en desarrollo
+            de aplicaciones web, automatización de procesos administrativos, diseño
+            de interfaces, bases de datos y gestión de proyectos tecnológicos.
           </p>
           <p>
-            Currently, I'm developing a personal project called ThemeMarket, a
-            free templates marketplace for developers.
+            Me especializo en crear soluciones modernas, eficientes y escalables
+            que responden a necesidades reales de negocio.
           </p>
           <p>
-            I like to share my knowledge with the community so I often make
-            tutorials in my YouTube channel.
+            Me apasiona combinar desarrollo, UX/UI y automatización para mejorar
+            la operación y la experiencia de las personas usuarias.
           </p>
         </div>
         <div class="flex flex-col gap-2">
           <h3
             class="text-lg sm:text-xl font-semibold text-gray-950 dark:text-white"
           >
-            Want to know a bit more?
+            ¿Quieres conocer más?
           </h3>
           <a
-            href="/docs/cv.pdf"
+            href={`${base}docs/cv.pdf`}
             role="button"
             aria-label="Download CV"
             download
             class="px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 dark:hover:bg-blue-800 dark:bg-blue-700 focus:ring-4 focus:outline-hidden focus:ring-blue-200 dark:focus:ring-blue-950 text-white w-fit font-semibold"
-            >Download CV</a
+            >Descargar CV</a
           >
         </div>
       </Card>
@@ -144,7 +143,7 @@ import HireServiceModal from "../components/HireServiceModal.astro";
     <h2
       class="text-2xl md:text-4xl font-bold text-gray-950 dark:text-white text-end ms-auto mb-8"
     >
-      Latest Projects
+      Proyectos destacados
     </h2>
     <div class="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {
@@ -156,21 +155,47 @@ import HireServiceModal from "../components/HireServiceModal.astro";
     <div class="mt-6 flex justify-center">
       <a
         role="button"
-        href="/projects"
+        href={`${base}projects/`}
         class="font-semibold transition-colors px-4 py-2 text-base rounded-3xl bg-blue-600 hover:bg-transparent hover:border hover:border-blue-600 hover:text-blue-600 dark:bg-blue-800 text-white dark:hover:bg-transparent dark:hover:border-blue-800 dark:hover:text-blue-800 duration-300"
-        >See All Projects</a
+        >Ver todos los proyectos</a
       >
     </div>
+  </section>
+  <section id="technologies" class="flex flex-col overflow-hidden">
+    <h2 class="text-2xl md:text-4xl font-bold text-gray-950 dark:text-white mb-8">
+      Tecnologías
+    </h2>
+    <article class="p-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 text-gray-600 dark:text-gray-400">
+      {['Laravel', 'PHP', 'Livewire', 'MySQL', 'Bootstrap', 'JavaScript', 'Astro', 'TypeScript', 'Git', 'GitHub'].map((technology) => <Card className="p-4 text-center">{technology}</Card>)}
+    </article>
+  </section>
+  <section id="skills" class="flex flex-col overflow-hidden">
+    <h2 class="text-2xl md:text-4xl font-bold text-gray-950 dark:text-white mb-8">
+      Habilidades
+    </h2>
+    <article class="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {['Desarrollo web', 'Diseño Gráfico', 'Automatización de procesos', 'UX/UI', 'Bases de datos', 'Gestión de proyectos'].map((skill) => <Card className="p-4"><p class="font-semibold text-gray-950 dark:text-white">{skill}</p></Card>)}
+    </article>
   </section>
   <section id="services" class="flex flex-col overflow-hidden">
     <h2
       class="text-2xl md:text-4xl font-bold text-gray-950 dark:text-white mb-8"
     >
-      Services
+      Servicios
     </h2>
     <article class="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {SERVICES.map((service) => <CardService service={service} />)}
     </article>
+  </section>
+  <section id="contact" class="flex flex-col">
+    <h2 class="text-2xl md:text-4xl font-bold text-gray-950 dark:text-white mb-8">Contacto y redes sociales</h2>
+    <Card className="text-gray-600 dark:text-gray-400">
+      <p>Correo: <a class="text-blue-700 dark:text-blue-400 underline" href="mailto:placeholder@ejemplo.com">placeholder@ejemplo.com</a></p>
+      <p>GitHub: <a class="text-blue-700 dark:text-blue-400 underline" href="https://github.com/TU_USUARIO" target="_blank" rel="noreferrer">github.com/TU_USUARIO</a></p>
+      <p>LinkedIn: <a class="text-blue-700 dark:text-blue-400 underline" href="#">placeholder</a></p>
+      <p>Facebook: <a class="text-blue-700 dark:text-blue-400 underline" href="#">placeholder</a></p>
+      <p>Instagram: <a class="text-blue-700 dark:text-blue-400 underline" href="#">placeholder</a></p>
+    </Card>
   </section>
   <HireServiceModal />
 </Layout>

@@ -1,23 +1,22 @@
 ---
-import { Image } from "astro:assets";
-
 interface Project {
   name: string;
   description: string;
   urlImg: string;
-  link: string;
+  technologies: string[];
+  github: string;
+  demo: string;
 }
 
 interface Props {
   project: Project;
 }
 
-const { name, description, urlImg, link } = Astro.props.project;
+const { name, description, urlImg, technologies, github, demo } = Astro.props.project;
+const imageUrl = `${import.meta.env.BASE_URL}${urlImg.replace(/^\//, "")}`;
 ---
 
-<a
-  href={link}
-  target="_blank"
+<article
   class="relative flex flex-col items-stretch duration-300 ease-out p-3 group h-fit rounded-md bg-white dark:bg-gray-950/30 w-full lg:max-w-82"
 >
   <span
@@ -30,9 +29,9 @@ const { name, description, urlImg, link } = Astro.props.project;
     class="relative z-30 block duration-300 ease-out group-hover:-translate-x-1 group-hover:-translate-y-1"
   >
     <span class="block w-full">
-      <Image
-        loading={Astro.originPathname == "/" ? "lazy" : "eager"}
-        src={urlImg}
+      <img
+        loading="lazy"
+        src={imageUrl}
         class="w-full max-h-72 rounded-lg object-center object-cover"
         alt={name}
         width={200}
@@ -77,9 +76,15 @@ const { name, description, urlImg, link } = Astro.props.project;
           ></svg
         >
       </span>
-      <span class="text-sm text-gray-600 dark:text-gray-400 block truncate"
-        >{description}</span
+      <span class="text-sm text-gray-600 dark:text-gray-400 block">{description}</span>
+      <span class="mt-3 flex flex-wrap gap-1">
+        {technologies.map((technology) => <span class="text-xs text-blue-700 dark:text-blue-400">{technology}</span>)}
+      </span>
+      <span class="mt-4 flex gap-2">
+        <a href={github} target="_blank" rel="noreferrer" class="text-sm font-semibold text-gray-950 dark:text-white underline">GitHub</a>
+        <a href={demo} target="_blank" rel="noreferrer" class="text-sm font-semibold text-blue-700 dark:text-blue-400 underline">Demo</a>
+      </span>
       >
     </span>
   </span>
-</a>
+</article>
