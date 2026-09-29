@@ -1,0 +1,44 @@
+---
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+import Card from "./Card.astro";
+
+const base = import.meta.env.BASE_URL;
+const hasCurriculum = existsSync(join(process.cwd(), "public", "docs", "cv.pdf"));
+---
+
+<section id="about" class="flex flex-col scroll-mt-24">
+  <h2 class="mb-2 text-2xl font-bold text-gray-950 dark:text-white md:text-4xl">
+    Sobre mí
+  </h2>
+  <article class="p-4">
+    <Card className="text-gray-600 dark:text-gray-400">
+      <div class="flex flex-col gap-2 text-sm sm:text-base">
+        <h3 class="text-lg font-semibold text-gray-950 dark:text-white sm:text-xl">
+          <span class="flex items-center gap-2"><svg aria-hidden="true" class="size-5 text-fuchsia-600 dark:text-fuchsia-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4" /><path d="M4.5 21a7.5 7.5 0 0 1 15 0" /></svg>Perfil profesional</span>
+        </h3>
+        <p>
+          Soy Ingeniero en Sistemas de Información desarrollando habilidades y experiencias en diseño y construcción de aplicaciones web, automatización de procesos administrativos, diseño de interfaces, bases de datos relacionales y gestión de proyectos tecnológicos combinando soluciones modernas, eficientes y escalables en base a los requerimientos del negocio o cliente.
+        </p>
+        <p>
+          Me apasiona combinar desarrollo, UX/UI y automatización para mejorar la operación y la experiencia de las personas usuarias, por eso mi formación profesional incluye el diseño gráfico.
+        </p>
+      </div>
+
+      {hasCurriculum && (
+        <div class="mt-6 flex flex-col items-end gap-2 text-right">
+          <h3 class="text-lg font-semibold text-gray-950 dark:text-white sm:text-xl">
+            ¿Quieres conocer más?
+          </h3>
+          <a
+            href={`${base}docs/cv.pdf`}
+            download
+            class="action-button"
+          >
+            Descargar CV
+          </a>
+        </div>
+      )}
+    </Card>
+  </article>
+</section>

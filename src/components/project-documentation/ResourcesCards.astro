@@ -1,0 +1,26 @@
+---
+interface Resource { title: string; description: string; href: string; }
+interface Props { resources: Resource[]; }
+const { resources } = Astro.props;
+---
+
+<div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  {resources.map((resource) => (
+    <article class="reveal-card flex min-w-0 flex-col rounded-xl border border-gray-300 bg-white p-5 transition-[opacity,transform,box-shadow,border-color] duration-700 hover:border-gray-400 hover:shadow-sm dark:border-neutral-800 dark:bg-gray-950/30 dark:hover:border-neutral-700">
+      <div class="flex size-10 items-center justify-center rounded-lg bg-fuchsia-50 text-fuchsia-700 dark:bg-fuchsia-950/40 dark:text-fuchsia-300">
+        <svg aria-hidden="true" class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v5h5M9.5 13h5M9.5 16.5h5"/></svg>
+      </div>
+      <h3 class="mt-4 text-lg font-semibold text-gray-950 dark:text-white">{resource.title}</h3>
+      <p class="mt-2 flex-1 text-sm leading-5 text-gray-600 dark:text-gray-400">{resource.description}</p>
+      <div class="mt-5 flex items-center gap-2">
+        <a href={resource.href} target="_blank" rel="noopener noreferrer" class="action-button min-w-0 flex-1 gap-2" aria-label={`Ver ${resource.title} en una pestaña nueva`}>
+          <svg aria-hidden="true" class="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg>
+          Ver PDF
+        </a>
+        <a href={resource.href} download title={`Descargar ${resource.title}`} aria-label={`Descargar ${resource.title}`} class="flex size-10 shrink-0 items-center justify-center rounded-lg border border-gray-300 text-gray-600 transition-colors hover:border-fuchsia-300 hover:bg-fuchsia-50 hover:text-fuchsia-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-700 dark:border-neutral-700 dark:text-gray-300 dark:hover:border-fuchsia-900 dark:hover:bg-fuchsia-950/40 dark:hover:text-fuchsia-300">
+          <svg aria-hidden="true" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 20h14"/></svg>
+        </a>
+      </div>
+    </article>
+  ))}
+</div>

@@ -1,0 +1,9 @@
+---
+interface Props { technologies: string[]; }
+const { technologies } = Astro.props;
+import { TECHNOLOGY_LINKS } from "../../data/technology-links";
+---
+
+<div class="flex flex-wrap gap-3">
+  {technologies.map((technology) => TECHNOLOGY_LINKS[technology] ? <a href={TECHNOLOGY_LINKS[technology]} target="_blank" rel="noopener noreferrer" class="rounded-xl border border-fuchsia-200 bg-fuchsia-50 px-3 py-2 text-sm font-semibold text-fuchsia-800 transition-colors hover:border-fuchsia-400 hover:bg-fuchsia-100 dark:border-fuchsia-900 dark:bg-fuchsia-950/30 dark:text-fuchsia-300 dark:hover:border-fuchsia-700">{technology}</a> : <span class="rounded-xl border border-gray-300 px-3 py-2 text-sm font-semibold dark:border-neutral-700">{technology}</span>)}
+</div>

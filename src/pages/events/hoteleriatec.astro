@@ -1,0 +1,11 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ProjectDetail from "../../components/projects/ProjectDetail.astro";
+import { getProjectDetailBySlug } from "../../data/projects/details";
+
+export const prerender = true;
+---
+
+<Layout eventMode>
+  <ProjectDetail project={getProjectDetailBySlug("hoteleriatec")!} showBackLink={false} />
+</Layout>

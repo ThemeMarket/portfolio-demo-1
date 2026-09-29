@@ -1,0 +1,12 @@
+---
+interface Props { objectives: string[]; }
+const { objectives } = Astro.props;
+---
+
+<ul class="overflow-hidden rounded-lg border border-gray-300 bg-white dark:border-neutral-800 dark:bg-gray-950/30">
+  {objectives.map((objective) => (
+    <li class="flex gap-3 p-4 text-gray-600 not-last:border-b not-last:border-gray-200 dark:text-gray-400 dark:not-last:border-neutral-800">
+      <svg aria-hidden="true" class="mt-0.5 size-5 shrink-0 text-fuchsia-700 dark:text-fuchsia-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg><span>{objective}</span>
+    </li>
+  ))}
+</ul>

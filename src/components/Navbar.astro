@@ -1,39 +1,55 @@
 ---
-import { Image } from "astro:assets";
+import logo from "../assets/logoport.svg";
 
-const { pathname } = Astro.url;
-
-let links: string[];
-const linkNames = ["Home", "About", "Projects", "Services"];
-
-if (pathname == "/") {
-  links = ["#home", "#about", "#projects", "#services"];
-} else {
-  links = ["/", "/#about", "/projects", "/#services"];
+interface Props {
+  eventMode?: boolean;
 }
+
+const { eventMode = false } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const links = [
+  { href: base, label: "Inicio" },
+  { href: `${base}projects/`, label: "Proyectos" },
+  { href: `${base}sobre-el-desarrollador/`, label: "Sobre el desarrollador" },
+];
 ---
 
 <header
-  class="max-w-screen-lg mx-auto flex flex-wrap justify-between py-1 px-4 sm:px-6 items-center sticky top-0 z-50 lg:rounded-b-md border border-gray-300 dark:border-neutral-800 backdrop-blur-xs"
+  class="max-w-screen-lg mx-auto flex flex-wrap justify-between py-1 px-4 sm:px-6 items-center sticky top-0 z-50 lg:rounded-b-md border border-gray-300 dark:border-neutral-800 backdrop-blur-xs bg-white/95 dark:bg-gray-950/95"
 >
-  <a href="/">
-    <Image
-      src="/logo.webp"
-      class="size-16 object-contain object-center bg-transparent"
-      alt="Logo"
-      width={64}
-      height={64}
-      title="Logo"
-      aria-label="Logo"
-      loading="eager"
-    />
-  </a>
+  {eventMode ? (
+    <div class="flex min-w-0 flex-col py-4 sm:py-5">
+      <p
+        id="event-greeting"
+        class="text-2xl font-bold tracking-tight text-gray-950 sm:text-3xl dark:text-white"
+        aria-live="polite"
+      >
+        Hola
+      </p>
+      <p class="mt-0.5 truncate text-xs font-medium text-gray-500 sm:text-sm dark:text-gray-400">
+        Bienvenido a la presentación de HoteleríaTec
+      </p>
+    </div>
+  ) : (
+    <a href={base} class="hover:scale-110 transition-transform duration-300">
+      <img
+        src={logo.src}
+        class="size-16 object-contain object-center bg-transparent"
+        alt="Logo"
+        width={64}
+        height={64}
+        title="Logo"
+        aria-label="Logo"
+        loading="eager"
+      />
+    </a>
+  )}
   <div class="sm:order-2 flex items-center gap-3 text-gray-900">
     <button
-      title="Theme Toggle"
-      aria-label="Theme Toggle"
+      title="Cambiar modo claro u oscuro"
+      aria-label="Cambiar modo claro u oscuro"
       id="theme-toggle"
-      class="flex items-center gap-2 dark:text-white"
+      class="flex size-10 items-center justify-center rounded-full border border-gray-300 bg-gray-50 text-gray-900 shadow-sm transition-all duration-300 hover:rotate-12 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-700 dark:border-neutral-700 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800"
     >
       <svg
         id="theme-sun-icon"
@@ -60,11 +76,11 @@ if (pathname == "/") {
         ></path></svg
       >
     </button>
-    <button
+    {!eventMode && <button
       title="Navbar Toggle"
       aria-label="Navbar Toggle"
       id="navbar-toggle"
-      class="sm:hidden dark:text-white"
+      class="sm:hidden dark:text-white transition-transform hover:scale-110"
     >
       <svg
         aria-label="Menu Icon"
@@ -90,9 +106,9 @@ if (pathname == "/") {
           d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
         ></path></svg
       >
-    </button>
+    </button>}
   </div>
-  <nav
+  {!eventMode && <nav
     id="navbar"
     class="hidden -translate-y-[200%] transition-transform p-4 sm:block sm:translate-y-0 sm:static sm:p-0 w-full sm:w-auto text-sm lg:text-base"
   >
@@ -100,21 +116,28 @@ if (pathname == "/") {
       class="flex flex-col items-center gap-4 lg:gap-6 border border-dashed border-gray-500 rounded-md font-semibold text-gray-500 p-4 sm:p-2 sm:border-none sm:bg-transparent sm:flex-row"
     >
       {
-        links.map((link, i) => (
+        links.map((link) => (
           <li>
             <a
-              href={link}
-              class="hover:text-gray-950 dark:hover:text-white dark:text-gray-400"
+              href={link.href}
+              class="relative hover:text-gray-950 dark:hover:text-white dark:text-gray-400 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-fuchsia-500 after:to-purple-500 hover:after:w-full after:transition-all after:duration-300"
             >
-              {linkNames[i]}
+              {link.label}
             </a>
           </li>
         ))
       }
     </ul>
-  </nav>
+  </nav>}
 </header>
 <script is:inline>
+  const eventGreeting = document.getElementById("event-greeting");
+  if (eventGreeting) {
+    const hour = new Date().getHours();
+    const timeOfDay = hour < 12 ? "buenos días" : hour < 18 ? "buenas tardes" : "buenas noches";
+    eventGreeting.textContent = `Hola, ${timeOfDay}`;
+  }
+
   const navbar = document.getElementById("navbar");
   const navbarToggle = document.getElementById("navbar-toggle");
   const navbarXIcon = document.getElementById("navbar-x-icon");
@@ -125,10 +148,10 @@ if (pathname == "/") {
       navbarXIcon.classList.toggle("hidden");
       navbarMenuIcon.classList.toggle("hidden");
 
-      navbar.classList.toggle("hidden");
+      navbar?.classList.toggle("hidden");
 
       setTimeout(() => {
-        navbar.classList.toggle("-translate-y-[200%]");
+        navbar?.classList.toggle("-translate-y-[200%]");
       });
     });
   }
@@ -166,15 +189,16 @@ if (pathname == "/") {
     document.documentElement.classList.remove("dark");
     localStorage.setItem("color-theme", "light");
 
-    themeMoonIcon.classList.remove("hidden");
-    themeSunIcon.classList.add("hidden");
+    themeMoonIcon?.classList.remove("hidden");
+    themeSunIcon?.classList.add("hidden");
   }
 
   function setDarkTheme() {
     localStorage.setItem("color-theme", "dark");
     document.documentElement.classList.add("dark");
 
-    themeMoonIcon.classList.add("hidden");
-    themeSunIcon.classList.remove("hidden");
+    themeMoonIcon?.classList.add("hidden");
+    themeSunIcon?.classList.remove("hidden");
   }
 </script>
+

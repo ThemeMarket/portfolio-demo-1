@@ -1,17 +1,21 @@
-import { defineConfig, envField } from "astro/config";
+import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
-import vercel from "@astrojs/vercel";
 
 export default defineConfig({
+  site: 'https://walterjoelcode.github.io',
+  // GitHub Pages deploys this project repository below its repository name.
+  base: '/Waltercode.github.io',
+  trailingSlash: 'always',
+  outDir: './dist',
+  output: 'static',
   vite: {
     plugins: [tailwindcss()],
-  },
-  env: {
-    schema: {
-      RESEND_API_KEY: envField.string({ context: "server", access: "secret" }),
-      MY_EMAIL: envField.string({ context: "server", access: "secret" }),
+    build: {
+      minify: 'terser',
+      sourcemap: false,
     },
   },
-  output: "server",
-  adapter: vercel(),
+  build: {
+    assets: 'assets',
+  },
 });

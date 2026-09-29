@@ -1,0 +1,21 @@
+---
+interface Card { title: string; description: string; icon?: string; }
+interface Props { cards: Card[]; }
+const { cards } = Astro.props;
+const iconPaths: Record<string, string> = {
+  mission: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0-4a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-3a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z",
+  vision: "M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Zm10 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z",
+  values: "M12 21s-8-4.5-8-11a4 4 0 0 1 7-2.6L12 8.5l1-1.1A4 4 0 0 1 20 10c0 6.5-8 11-8 11Z",
+  principles: "M12 3 3 8l9 5 9-5-9-5ZM5 12l7 4 7-4M5 16l7 4 7-4",
+};
+---
+
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+  {cards.map((card) => (
+    <article class="reveal-card rounded-xl border border-gray-300 bg-white p-5 transition-[opacity,transform,box-shadow,border-color] duration-700 hover:border-gray-400 hover:shadow-sm dark:border-neutral-800 dark:bg-gray-950/30 dark:hover:border-neutral-700">
+      {card.icon && <svg aria-hidden="true" class="size-6 text-fuchsia-700 dark:text-fuchsia-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d={iconPaths[card.icon]} /></svg>}
+      <h3 class="mt-2 text-lg font-semibold text-gray-950 dark:text-white">{card.title}</h3>
+      <p class="mt-2 text-sm leading-5 text-gray-600 dark:text-gray-400">{card.description}</p>
+    </article>
+  ))}
+</div>

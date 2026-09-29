@@ -1,0 +1,15 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ProjectDetail from "../../components/projects/ProjectDetail.astro";
+import { PROJECT_DETAILS, getProjectDetailBySlug } from "../../data/projects/details";
+
+export const prerender = true;
+export function getStaticPaths() {
+  return PROJECT_DETAILS.map((project) => ({ params: { slug: project.slug } }));
+}
+
+const project = getProjectDetailBySlug(Astro.params.slug ?? "");
+if (!project) return Astro.redirect(`${import.meta.env.BASE_URL}projects/`);
+---
+
+<Layout><ProjectDetail project={project} /></Layout>

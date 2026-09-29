@@ -1,0 +1,57 @@
+---
+import ProjectHero from "../project-documentation/ProjectHero.astro";
+import ProjectGallery from "../project-documentation/ProjectGallery.astro";
+import ProjectSection from "../project-documentation/ProjectSection.astro";
+import ObjectivesList from "../project-documentation/ObjectivesList.astro";
+import TechnologyCards from "../project-documentation/TechnologyCards.astro";
+import CollaboratorsCards from "../project-documentation/CollaboratorsCards.astro";
+import InstitutionalCards from "../project-documentation/InstitutionalCards.astro";
+import ProjectSubnav from "../project-documentation/ProjectSubnav.astro";
+import ResourcesCards from "../project-documentation/ResourcesCards.astro";
+import type { ProjectDetail as ProjectDetailData } from "../../data/projects/details";
+import { resolveCollaborators } from "../../data/collaborators";
+
+interface Props {
+  project: ProjectDetailData;
+  showBackLink?: boolean;
+}
+const { project, showBackLink = true } = Astro.props;
+const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
+const isHoteleriaTec = project.slug === "hoteleriatec";
+const subnavItems = [
+  { id: "contexto", label: "Contextualización", icon: "context" },
+  { id: "antecedentes", label: "Antecedentes", icon: "history" },
+  { id: "objetivos", label: "Objetivos", icon: "target" },
+  { id: "lineamientos", label: "Lineamientos", icon: "institution" },
+  { id: "resultados", label: "Resultados", icon: "results" },
+  { id: "recursos", label: "Recursos", icon: "resources" },
+];
+const resources = [
+  { title: "Ficha técnica: Café Capuchino", description: "Ejemplo completo con porciones, descripción, ingredientes y procedimientos de preelaboración, elaboración y presentación del producto.", href: asset("/projects/hoteleriatec/resources/ficha-tecnica.pdf") },
+  { title: "Ticket de venta", description: "Comprobante de una orden con productos, cantidades, precios, impuestos, total, método de pago y cambio entregado al cliente.", href: asset("/projects/hoteleriatec/resources/ticket-venta-ejemplo.pdf") },
+  { title: "Reporte general de ventas", description: "Resumen de órdenes pagadas durante un período, detallado por cliente, cajero, método de pago, subtotal, IVA y total facturado.", href: asset("/projects/hoteleriatec/resources/reporte-general-ventas.pdf") },
+  { title: "Ventas por categoría", description: "Consolidado de órdenes, unidades vendidas, ingresos y porcentaje de participación de cada categoría de productos.", href: asset("/projects/hoteleriatec/resources/reporte-ventas-por-categoria.pdf") },
+  { title: "Reporte general de ingresos", description: "Análisis de ingresos por método de pago, incluyendo ventas pagadas, montos recibidos, descuentos, propinas e ingreso facturado.", href: asset("/projects/hoteleriatec/resources/reporte-general-ingresos.pdf") },
+];
+---
+
+<div class="flex min-w-0 flex-col gap-10 sm:gap-12">
+  <ProjectHero title={project.title} description={project.shortDescription} logo={project.logo} github={project.github} category={project.category} showBackLink={showBackLink} />
+  <ProjectSection title="Galería" id="galeria"><ProjectGallery images={project.gallery.map((image) => ({ ...image, src: image.src.startsWith("/projects/") ? asset(image.src) : image.src }))} /></ProjectSection>
+  <ProjectSection title="Descripción general" id="descripcion"><p class="w-full text-base leading-7 text-gray-600 dark:text-gray-400">{project.generalDescription}</p></ProjectSection>
+  {isHoteleriaTec && <ProjectSubnav items={subnavItems} />}
+  {project.category === "education" && project.context && <div data-project-panel={isHoteleriaTec ? "contexto" : undefined} id={isHoteleriaTec ? "panel-contexto" : undefined}><ProjectSection title="Contextualización" id="contexto"><div class="w-full space-y-4 text-base leading-7 text-gray-600 dark:text-gray-400">{project.context.split("\n\n").map((paragraph) => <p>{paragraph}</p>)}</div></ProjectSection></div>}
+  {project.category === "education" && project.institutionalCards && <div data-project-panel={isHoteleriaTec ? "lineamientos" : undefined} id={isHoteleriaTec ? "panel-lineamientos" : undefined} hidden={isHoteleriaTec}><ProjectSection title="Lineamientos institucionales" id="lineamientos"><InstitutionalCards cards={project.institutionalCards} /></ProjectSection></div>}
+  {project.expectedResults && <div data-project-panel="resultados" id="panel-resultados" hidden><ProjectSection title="Resultados esperados" id="resultados" intro="La estrategia busca generar cambios observables en el aprendizaje y en la preparación para el entorno laboral."><ObjectivesList objectives={project.expectedResults} /></ProjectSection></div>}
+  {project.category === "education" && <div data-project-panel={isHoteleriaTec ? "objetivos" : undefined} id={isHoteleriaTec ? "panel-objetivos" : undefined} hidden={isHoteleriaTec}><ProjectSection title="Objetivos" id="objetivos">
+    {project.generalObjective && <div class="w-full rounded-xl border border-fuchsia-200 bg-fuchsia-50/70 p-5 dark:border-fuchsia-900/60 dark:bg-fuchsia-950/20"><p class="text-xs font-bold uppercase tracking-[0.16em] text-fuchsia-800 dark:text-fuchsia-300">Objetivo general</p><p class="mt-2 leading-6 text-gray-700 dark:text-gray-300">{project.generalObjective}</p></div>}
+    <div class="mt-4"><p class="mb-3 text-sm font-semibold text-gray-950 dark:text-white">Objetivos específicos</p><ObjectivesList objectives={project.objectives} /></div>
+  </ProjectSection></div>}
+  {project.background && <div data-project-panel="antecedentes" id="panel-antecedentes" hidden><ProjectSection title="Antecedentes" id="antecedentes"><div class="w-full space-y-4 text-base leading-7 text-gray-600 dark:text-gray-400">{project.background.map((paragraph) => <p>{paragraph}</p>)}</div></ProjectSection></div>}
+  {isHoteleriaTec && <div data-project-panel="recursos" id="panel-recursos" hidden><ProjectSection title="Recursos" id="recursos" intro="Materiales de ejemplo para acompañar las prácticas y familiarizar a las y los protagonistas con los documentos generados por el sistema."><ResourcesCards resources={resources} /></ProjectSection></div>}
+  {isHoteleriaTec && <hr class="my-2 border-0 border-t border-gray-300 dark:border-neutral-800" />}
+  <div class="grid grid-cols-1 items-start gap-10 sm:gap-12 lg:grid-cols-2">
+    {project.collaborators && project.collaborators.length > 0 && <ProjectSection title="Colaboradores" id="colaboradores"><CollaboratorsCards collaborators={resolveCollaborators(project.collaborators)} compact={isHoteleriaTec} /></ProjectSection>}
+    <ProjectSection title="Tecnologías" id="tecnologias"><TechnologyCards technologies={project.technologies} /></ProjectSection>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import AboutSection from "../components/AboutSection.astro";
+import ContactSection from "../components/ContactSection.astro";
+import TimelineItem from "../components/TimelineItem.astro";
+import EXPERIENCES from "../assets/collections/experiences.json";
+import { TECHNOLOGY_LINKS } from "../data/technology-links";
+
+const submenu = [
+  { href: "#about", label: "Sobre mí" },
+  { href: "#formation", label: "Formación profesional" },
+  { href: "#technologies", label: "Tecnologías" },
+  { href: "#skills", label: "Habilidades" },
+  { href: "#contact", label: "Contacto" },
+];
+---
+
+<Layout>
+  <header class="flex flex-col gap-4">
+    <div class="flex flex-col gap-1 py-3">
+      <h1 class="text-3xl font-bold text-gray-950 dark:text-white md:text-5xl">Walter Joel Castil Corea</h1>
+      <p class="text-sm font-medium tracking-wide text-gray-600 dark:text-gray-400 sm:text-base">Ingeniero en Sistemas de Información</p>
+    </div>
+    <nav aria-label="Secciones de Sobre el desarrollador" class="rounded-xl border border-gray-300 bg-white/90 p-3 dark:border-neutral-800 dark:bg-gray-950/90">
+      <ul class="flex flex-wrap gap-2">
+        {submenu.map((item) => <li><a href={item.href} class="block rounded-full px-3 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-fuchsia-50 hover:text-fuchsia-700 dark:text-gray-300 dark:hover:bg-fuchsia-950 dark:hover:text-fuchsia-300">{item.label}</a></li>)}
+      </ul>
+    </nav>
+  </header>
+
+  <AboutSection />
+
+  <section id="formation" class="flex scroll-mt-24 flex-col">
+    <h2 class="mb-4 text-2xl font-bold text-gray-950 dark:text-white md:text-4xl">Formación profesional</h2>
+    <Card className="p-8">
+      <ol class="relative border-s border-gray-300 dark:border-neutral-800">
+        {EXPERIENCES.map((experience) => <TimelineItem title={experience.company} description={experience.description} date={experience.dates}><div slot="icon" class="size-full p-1" set:html={experience.svgIcon} /></TimelineItem>)}
+      </ol>
+    </Card>
+  </section>
+
+  <section id="technologies" class="flex scroll-mt-24 flex-col overflow-hidden">
+    <h2 class="mb-6 text-2xl font-bold text-gray-950 dark:text-white md:text-4xl">Tecnologías</h2>
+    <article class="grid grid-cols-2 gap-4 p-2 text-gray-600 dark:text-gray-400 sm:grid-cols-3 lg:grid-cols-5">
+      {Object.entries(TECHNOLOGY_LINKS).map(([technology, href]) => <Card className="rounded-xl px-3 py-2 text-center text-sm font-medium"><a href={href} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 text-gray-700 transition-colors hover:text-fuchsia-700 dark:text-gray-300 dark:hover:text-fuchsia-300">{technology}<svg aria-hidden="true" class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 5h5v5M10 14 19 5M19 14v5H5V5h5" /></svg></a></Card>)}
+    </article>
+  </section>
+
+  <section id="skills" class="flex scroll-mt-24 flex-col overflow-hidden">
+    <h2 class="mb-6 text-2xl font-bold text-gray-950 dark:text-white md:text-4xl">Habilidades</h2>
+    <article class="grid grid-cols-1 gap-4 p-2 sm:grid-cols-2 lg:grid-cols-3">
+      {['Desarrollo Web', 'Diseño Gráfico', 'Análisis de requerimientos', 'UX/UI', 'Bases de datos relacionales', 'Gestión de proyectos', 'Briefing & Branding', 'Pedagogía informática'].map((skill) => <Card className="rounded-xl px-4 py-3"><p class="text-center font-semibold text-gray-950 dark:text-white">{skill}</p></Card>)}
+    </article>
+  </section>
+
+  <ContactSection />
+</Layout>

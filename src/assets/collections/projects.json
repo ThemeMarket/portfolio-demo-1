@@ -1,26 +1,46 @@
 [
   {
-    "name": "GotoSend",
-    "description": "E-commerce for selling remittances, mobile recharges and gift cards.",
-    "urlImg": "/projects/gotosend.webp",
-    "link": "https://gotosend.com"
+    "name": "FlossCueroSystem",
+    "category": "business",
+    "shortDescription": "Sistema web para el control de inventario, facturación, clientes y seguimiento de envíos de una tienda local.",
+    "description": "Sistema web para el control de inventario, facturación, control de clientes, seguimiento de envíos de una tienda local, incluye reportes y estadísticas. Desarrollada como proyecto de graduación para título de ingeniería en sistemas, con una calificación de 100 puntos.",
+    "logo": "/projects/logos/flosscuerosystem.svg",
+    "technologies": ["Laravel", "Livewire", "MySQL", "DomPDF"],
+    "github": "",
+    "hasDocumentation": true,
+    "documentationUrl": "/projects/flosscuerosystem"
   },
   {
-    "name": "D-Kanto",
-    "description": "E-commerce website for selling technological products.",
-    "urlImg": "/projects/d-kanto.webp",
-    "link": "https://d-kanto.onrender.com"
+    "name": "SIGEPRO",
+    "category": "education",
+    "shortDescription": "Propuesta de plataforma para el seguimiento de protagonistas de educación técnica durante sus prácticas profesionales.",
+    "description": "Propuesta de plataforma web para el control y automatización del seguimiento de los protagonistas de educación técnica del tecnológico nacional durante el proceso de prácticas profesionales.",
+    "logo": "/projects/logos/sigepro.svg",
+    "technologies": ["Laravel", "Bootstrap", "MySQL", "Livewire", "DomPDF"],
+    "github": "",
+    "hasDocumentation": true,
+    "documentationUrl": "/projects/sigepro"
   },
   {
-    "name": "D-Kanto Admins",
-    "description": "Admin Dashboard for an E-commerce website",
-    "urlImg": "/projects/d-kanto-admin.webp",
-    "link": "https://d-kanto-admin.onrender.com"
+    "name": "StockOne",
+    "category": "business",
+    "shortDescription": "Sistema web para el control de inventario, facturación y crédito, con una experiencia de usuario optimizada.",
+    "description": "Sistema web mejorado para el control de inventario, facturación y crédito, UI & UX optimizado para ofrecer una mejor experiencia al usuario.",
+    "logo": "/projects/logos/stockone.svg",
+    "technologies": ["Laravel", "Bootstrap", "MySQL", "Livewire", "DomPDF"],
+    "github": "",
+    "hasDocumentation": true,
+    "documentationUrl": "/projects/stockone"
   },
   {
-    "name": "Amazon Redesign Thinking",
-    "description": "Amazon Clon",
-    "urlImg": "/projects/amazon-redesign-thinking.webp",
-    "link": "https://amazon-front-gamma.vercel.app"
+    "name": "HoteleríaTec",
+    "category": "education",
+    "shortDescription": "Plataforma educativa para digitalizar la atención y facturación de comensales en el área de restaurante del Centro Tecnológico perteneciente al Tecnológico Nacional.",
+    "description": "Propuesta de plataforma web para el control y automatización del proceso de atención y facturación a comensales en el área de restaurante del Tecnológico Nacional. Una estrategia innovadora, pedagógica y tecnológica desarrollada como una herramienta dentro del aula de clases.",
+    "logo": "/projects/logos/hoteleriatec.svg",
+    "technologies": ["Laravel", "Bootstrap", "MySQL", "Livewire", "DomPDF"],
+    "github": "",
+    "hasDocumentation": true,
+    "documentationUrl": "/projects/hoteleriatec"
   }
 ]

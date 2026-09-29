@@ -1,0 +1,208 @@
+---
+import qrSvg from "../../../assets/qr-hoteleriatec.svg?raw";
+import portfolioIcon from "../../../assets/logoport.svg";
+
+const base = import.meta.env.BASE_URL;
+const logo = `${base}projects/logos/hoteleriatec.svg`;
+export const prerender = true;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light" />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/svg+xml" href={portfolioIcon.src} />
+    <title>HoteleríaTec — Acceso</title>
+  </head>
+  <body>
+    <main class="stage" aria-label="Acceso a HoteleríaTec mediante código QR">
+      <div class="orb orb-blue" aria-hidden="true"></div>
+      <div class="orb orb-pink" aria-hidden="true"></div>
+      <div class="rings" aria-hidden="true"></div>
+
+      <div class="culinary-icons" aria-hidden="true">
+        <svg class="culinary-icon icon-cloche" viewBox="0 0 64 64"><path d="M8 46h48M14 42a18 18 0 0 1 36 0M32 20v-4M27 16h10" /></svg>
+        <svg class="culinary-icon icon-cutlery" viewBox="0 0 64 64"><path d="M17 8v18M11 8v12c0 5 3 7 6 7s6-2 6-7V8M17 27v29M43 56V34M43 34c7-4 8-17 3-26-5 4-7 13-7 19 0 4 2 6 4 7Z" /></svg>
+        <svg class="culinary-icon icon-bread" viewBox="0 0 64 64"><path d="M14 49c-8-5-8-17 1-21 1-10 13-15 21-9 9-2 17 5 16 14 7 7 2 18-7 18H19c-2 0-4-1-5-2ZM24 26l4 7M35 23l4 7" /></svg>
+        <svg class="culinary-icon icon-whisk" viewBox="0 0 64 64"><path d="m19 50 9-9M17 55l5-5M30 40c-8-3-13-14-8-19 5-5 16 0 19 8M30 40c3 3 7 2 10-1 3-3 4-7 1-10M30 40c-3-8 0-18 6-19 6-1 10 9 5 18" /></svg>
+        <svg class="culinary-icon icon-cup" viewBox="0 0 64 64"><path d="M13 24h34v12c0 10-7 17-17 17S13 46 13 36V24ZM47 29h3c8 0 8 12 0 12h-4M23 17c-3-3 3-5 0-9M34 17c-3-3 3-5 0-9" /></svg>
+        <svg class="culinary-icon icon-cake" viewBox="0 0 64 64"><path d="M12 31h40v23H12zM12 40c5 4 8-4 13 0s8-4 13 0 8-4 14 0M20 31V20h24v11M25 20v-7M39 20v-7" /></svg>
+        <svg class="culinary-icon icon-plate" viewBox="0 0 64 64"><circle cx="32" cy="32" r="22" /><circle cx="32" cy="32" r="13" /><path d="M12 50h40" /></svg>
+        <svg class="culinary-icon icon-leaf" viewBox="0 0 64 64"><path d="M51 12C30 13 15 23 15 42c0 5 3 9 8 9 19 0 29-15 28-39ZM14 52c9-12 18-19 30-26" /></svg>
+        <svg class="culinary-icon icon-sparkle" viewBox="0 0 64 64"><path d="M32 8c2 14 10 22 24 24-14 2-22 10-24 24-2-14-10-22-24-24 14-2 22-10 24-24ZM51 10c.7 5 3.5 7.3 8 8-4.5.7-7.3 3.5-8 8-.7-4.5-3.5-7.3-8-8 4.5-.7 7.3-3.5 8-8Z" /></svg>
+      </div>
+
+      <section class="access-card">
+        <img class="logo" src={logo} alt="HoteleríaTec" width="766" height="157" />
+        <div class="intro">
+          <h1>Comienza aquí</h1>
+          <p>Escanea el código para obtener más información sobre HoteleríaTec.</p>
+        </div>
+
+        <a class="qr-flip" href="https://github.com/WalterJoelCode" target="_blank" rel="noopener noreferrer" aria-label="Visitar el GitHub de WalterJoelCode">
+          <span class="qr-flip-inner">
+            <span class="qr-shell" aria-hidden="true">
+              <span class="qr-art" set:html={qrSvg}></span>
+              <span class="qr-reflection" aria-hidden="true"></span>
+            </span>
+            <span class="qr-github" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .7a11.3 11.3 0 0 0-3.57 22.02c.56.1.77-.24.77-.54v-2.1c-3.14.68-3.8-1.33-3.8-1.33-.5-1.3-1.25-1.65-1.25-1.65-1.03-.7.08-.7.08-.7 1.13.08 1.73 1.16 1.73 1.16 1.01 1.72 2.64 1.22 3.29.93.1-.73.4-1.22.72-1.5-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.23 1.16-3.02-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.15a10.75 10.75 0 0 1 5.64 0c2.15-1.45 3.1-1.15 3.1-1.15.61 1.55.23 2.7.11 2.98.72.79 1.16 1.8 1.16 3.02 0 4.33-2.64 5.28-5.15 5.56.4.35.76 1.02.76 2.06v3.06c0 .3.2.65.78.54A11.3 11.3 0 0 0 12 .7Z" /></svg>
+              <strong>WalterJoelCode</strong>
+              <small>github.com/WalterJoelCode</small>
+            </span>
+          </span>
+        </a>
+
+        <p class="scan-note"><span aria-hidden="true"></span>Abre la cámara de tu dispositivo y apunta al QR</p>
+      </section>
+
+      <a class="start-button" href={`${base}events/hoteleriatec/`}>
+        <span>Ir al sitio</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+      </a>
+      <button class="theme-button" type="button" aria-label="Cambiar modo de color" aria-pressed="false">
+        <svg class="sun-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" /></svg>
+        <svg class="moon-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.6 15.8A8.6 8.6 0 0 1 8.2 3.4 8.6 8.6 0 1 0 20.6 15.8Z" /></svg>
+      </button>
+    </main>
+    <script>
+      import * as Tone from "tone";
+
+      const page = document.documentElement;
+      const themeButton = document.querySelector<HTMLButtonElement>(".theme-button");
+      const accessCard = document.querySelector<HTMLElement>(".access-card");
+      const savedTheme = localStorage.getItem("hoteleriatec-theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      const applyTheme = (theme: "light" | "dark") => {
+        page.dataset.theme = theme;
+        themeButton?.setAttribute("aria-pressed", String(theme === "dark"));
+        themeButton?.setAttribute("aria-label", theme === "dark" ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
+      };
+
+      applyTheme(savedTheme === "dark" || (!savedTheme && prefersDark) ? "dark" : "light");
+      themeButton?.addEventListener("click", () => {
+        const theme = page.dataset.theme === "dark" ? "light" : "dark";
+        localStorage.setItem("hoteleriatec-theme", theme);
+        applyTheme(theme);
+      });
+
+      const revealSynth = new Tone.Synth({
+        oscillator: { type: "sine" },
+        envelope: { attack: 0.01, decay: 0.13, sustain: 0.05, release: 0.22 },
+      }).toDestination();
+      revealSynth.volume.value = -22;
+      let soundEnabled = false;
+      let revealTimer: number | undefined;
+
+      const playRevealSound = () => {
+        if (!soundEnabled || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        const now = Tone.now();
+        revealSynth.triggerAttackRelease("E5", "32n", now, 0.45);
+        revealSynth.triggerAttackRelease("B5", "32n", now + 0.1, 0.3);
+      };
+      const scheduleRevealSound = () => {
+        window.clearTimeout(revealTimer);
+        revealTimer = window.setTimeout(playRevealSound, 7200);
+      };
+      const enableSound = async () => {
+        await Tone.start();
+        soundEnabled = true;
+      };
+
+      scheduleRevealSound();
+      accessCard?.addEventListener("animationiteration", scheduleRevealSound);
+      window.addEventListener("pointerdown", enableSound, { once: true });
+      window.addEventListener("keydown", enableSound, { once: true });
+    </script>
+  </body>
+</html>
+
+<style>
+  :global(*) { box-sizing: border-box; }
+  :global(html), :global(body) { margin: 0; min-height: 100%; }
+  :global(body) { overflow: hidden; background: #f7faff; color: #075484; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+
+  .stage { position: relative; display: grid; min-height: 100svh; place-items: center; isolation: isolate; overflow: hidden; padding: 2rem; background: radial-gradient(circle at 50% 45%, #fff 0 18%, rgb(249 252 255 / 96%) 57%, #f4f9ff 100%); }
+  .orb { position: absolute; z-index: -3; width: min(42rem, 78vw); aspect-ratio: 1; border-radius: 50%; filter: blur(90px); opacity: .13; animation: orbit 60s ease-in-out infinite; }
+  .orb-blue { top: -28%; left: -14%; background: #075484; }
+  .orb-pink { right: -14%; bottom: -28%; background: #e5007e; animation-delay: -15s; }
+  .rings { position: absolute; z-index: -2; width: min(48rem, 88vw); aspect-ratio: 1; border: 1px solid rgb(7 84 132 / 9%); border-radius: 50%; box-shadow: 0 0 0 4rem rgb(7 84 132 / 2.5%), 0 0 0 8rem rgb(229 0 126 / 1.5%); animation: breathe 60s ease-in-out infinite; }
+
+  .culinary-icons { position: absolute; inset: 0; z-index: 1; pointer-events: none; animation: icon-cluster-orbit 60s linear infinite; }
+  .culinary-icon { position: absolute; top: 50%; left: 50%; width: clamp(2.8rem, 5vw, 4.8rem); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; opacity: 0; filter: drop-shadow(0 .35rem .5rem rgb(7 84 132 / 8%)); animation: icon-journey 60s cubic-bezier(.55, 0, .25, 1) infinite; }
+  .icon-cloche { --end-x: -40vw; --end-y: -37vh; --cluster-x: -2.8rem; --cluster-y: -1.8rem; --drift-x: 1.5rem; --drift-y: -.7rem; color: #075484; }
+  .icon-cutlery { --end-x: 39vw; --end-y: -35vh; --cluster-x: 2.7rem; --cluster-y: -2.2rem; --drift-x: -1.1rem; --drift-y: 1rem; color: #e5007e; }
+  .icon-bread { --end-x: -37vw; --end-y: 36vh; --cluster-x: -3rem; --cluster-y: 2.2rem; --drift-x: .8rem; --drift-y: -1.3rem; color: #e5007e; }
+  .icon-whisk { --end-x: 39vw; --end-y: 37vh; --cluster-x: 2.6rem; --cluster-y: 2.6rem; --drift-x: -1.4rem; --drift-y: -.6rem; color: #075484; }
+  .icon-cup { --end-x: -45vw; --end-y: 0vh; --cluster-x: -4.1rem; --cluster-y: .2rem; --drift-x: 1.2rem; --drift-y: .7rem; color: #075484; }
+  .icon-cake { --end-x: 45vw; --end-y: 0vh; --cluster-x: 4rem; --cluster-y: .5rem; --drift-x: -1.2rem; --drift-y: -.9rem; color: #e5007e; }
+  .icon-plate { --end-x: 0vw; --end-y: -43vh; --cluster-x: 0rem; --cluster-y: -3.5rem; --drift-x: .7rem; --drift-y: 1rem; width: clamp(2.2rem, 4vw, 3.6rem); color: #32a6a1; }
+  .icon-leaf { --end-x: 22vw; --end-y: 40vh; --cluster-x: 1.1rem; --cluster-y: 3.7rem; --drift-x: -.9rem; --drift-y: -1.1rem; width: clamp(2.4rem, 4vw, 4rem); color: #e8a230; }
+  .icon-sparkle { --end-x: 28vw; --end-y: -16vh; --cluster-x: 4.1rem; --cluster-y: -1rem; --drift-x: -1.5rem; --drift-y: .8rem; width: clamp(1.8rem, 3vw, 2.8rem); color: #9c62a5; }
+
+  .access-card { position: relative; z-index: 2; display: flex; width: min(27rem, 90vw); flex-direction: column; align-items: center; padding: clamp(1.6rem, 4vw, 2.35rem); border: 1px solid rgb(7 84 132 / 11%); border-radius: 1.75rem; background: rgb(255 255 255 / 76%); box-shadow: 0 1.4rem 3.8rem rgb(7 84 132 / 11%), inset 0 1px 0 rgb(255 255 255 / 90%); backdrop-filter: blur(18px); animation: card-enter 60s cubic-bezier(.22, 1, .36, 1) infinite; }
+  .logo { display: block; width: min(15rem, 68vw); height: auto; margin-bottom: clamp(1.5rem, 3.6vw, 2rem); }
+  .intro { text-align: center; }
+  h1 { margin: 0; color: #075484; font-size: clamp(1.35rem, 3.5vw, 1.75rem); line-height: 1.15; letter-spacing: -.03em; }
+  .intro > p:last-child { margin: .6rem 0 1.4rem; color: rgb(7 84 132 / 76%); font-size: .95rem; line-height: 1.45; }
+
+  .qr-flip { display: block; width: min(15.5rem, 62vw); aspect-ratio: 1; color: inherit; perspective: 58rem; text-decoration: none; }
+  .qr-flip-inner { position: relative; display: block; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .72s cubic-bezier(.2, .78, .25, 1); }
+  .qr-flip:hover .qr-flip-inner, .qr-flip:focus-visible .qr-flip-inner { transform: rotateY(180deg); }
+  .qr-shell, .qr-github { position: absolute; inset: 0; display: grid; place-items: center; overflow: hidden; border-radius: 1.2rem; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .qr-shell { padding: .7rem; border: 1px solid rgb(7 84 132 / 12%); background: #fff; box-shadow: 0 .7rem 1.7rem rgb(7 84 132 / 9%); animation: qr-pulse 60s ease-in-out infinite; }
+  .qr-github { align-content: center; gap: .6rem; padding: 1.5rem; border: 1px solid rgb(229 0 126 / 36%); background: linear-gradient(145deg, #075484, #073e64); color: #fff; text-align: center; box-shadow: 0 .7rem 1.7rem rgb(7 84 132 / 16%); transform: rotateY(180deg); }
+  .qr-github svg { width: 3.25rem; height: 3.25rem; } .qr-github strong { font-size: 1rem; } .qr-github small { color: rgb(255 255 255 / 76%); font-size: .7rem; }
+  .qr-flip:focus-visible { outline: 2px solid #e5007e; outline-offset: 5px; border-radius: 1.2rem; }
+  .qr-art { position: relative; z-index: 1; display: block; width: 100%; line-height: 0; }
+  .qr-art :global(svg) { display: block; width: 100%; height: auto; }
+  /* El SVG se inserta en línea: sus trazos y colores pueden ajustarse desde CSS. */
+  .qr-art :global(.cls-1) { fill: #075484; }
+  .qr-reflection { position: absolute; z-index: 3; inset: .7rem; pointer-events: none; background: linear-gradient(108deg, transparent 32%, rgb(255 255 255 / 0%) 42%, rgb(255 255 255 / 82%) 50%, rgb(255 255 255 / 0%) 58%, transparent 68%) -140% 0 / 45% 100% no-repeat; mix-blend-mode: screen; animation: qr-shine 60s ease-in-out infinite; }
+  .scan-note { display: flex; align-items: center; gap: .45rem; margin: 1.25rem 0 0; color: rgb(7 84 132 / 73%); font-size: .76rem; text-align: center; }
+  .scan-note span { width: .45rem; height: .45rem; border-radius: 50%; background: #e5007e; box-shadow: 0 0 0 .23rem rgb(229 0 126 / 13%); animation: signal 60s ease-in-out infinite; }
+
+  .start-button { position: fixed; right: clamp(1.25rem, 3vw, 2.5rem); bottom: max(clamp(1.25rem, 3vw, 2.5rem), env(safe-area-inset-bottom)); z-index: 10; display: inline-flex; min-height: 2.75rem; align-items: center; gap: .65rem; border: 1px solid rgb(7 84 132 / 48%); border-radius: .8rem; padding: .7rem 1rem .7rem 1.1rem; background: rgb(255 255 255 / 72%); color: #075484; font-size: .9rem; font-weight: 700; text-decoration: none; box-shadow: 0 .5rem 1.5rem rgb(7 84 132 / 7%); backdrop-filter: blur(12px); transition: transform .25s ease, border-color .25s ease, background-color .25s ease; }
+  .start-button svg { width: 1rem; height: 1rem; transition: transform .25s ease; }
+  .start-button:hover { transform: translateY(-2px); border-color: #075484; background: #fff; }
+  .start-button:hover svg { transform: translateX(3px); }
+  .start-button:focus-visible { outline: 2px solid #e5007e; outline-offset: 4px; }
+  .theme-button { position: fixed; bottom: max(clamp(1.25rem, 3vw, 2.5rem), env(safe-area-inset-bottom)); left: clamp(1.25rem, 3vw, 2.5rem); z-index: 10; display: inline-grid; width: 2.75rem; min-height: 2.75rem; place-items: center; border: 1px solid rgb(7 84 132 / 48%); border-radius: .8rem; padding: .7rem; background: rgb(255 255 255 / 72%); color: #075484; cursor: pointer; box-shadow: 0 .5rem 1.5rem rgb(7 84 132 / 7%); backdrop-filter: blur(12px); transition: transform .25s ease, border-color .25s ease, background-color .25s ease; }
+  .theme-button svg { width: 1rem; height: 1rem; } .moon-icon { display: none; }
+  .theme-button:hover { transform: translateY(-2px); border-color: #075484; background: #fff; } .theme-button:focus-visible { outline: 2px solid #e5007e; outline-offset: 4px; }
+
+  @keyframes orbit { 0%, 100% { transform: translate3d(-3%, -2%, 0) scale(.94); } 50% { transform: translate3d(7%, 5%, 0) scale(1.08); } }
+  @keyframes breathe { 0%, 100% { opacity: .38; transform: scale(.9) rotate(0); } 50% { opacity: .86; transform: scale(1.05) rotate(8deg); } }
+  @keyframes icon-journey {
+    0%, 1% { opacity: 0; transform: translate(-50%, -50%) scale(.35) rotate(-18deg); }
+    3%, 5%, 7% { opacity: .34; transform: translate(calc(-50% + var(--cluster-x)), calc(-50% + var(--cluster-y))) scale(.92) rotate(0); }
+    8.333% { opacity: .19; transform: translate(calc(-50% + var(--end-x)), calc(-50% + var(--end-y))) scale(1) rotate(0); }
+    35% { opacity: .19; transform: translate(calc(-50% + var(--end-x) + var(--drift-x)), calc(-50% + var(--end-y) + var(--drift-y))) scale(1.04) rotate(5deg); }
+    63% { opacity: .19; transform: translate(calc(-50% + var(--end-x) - var(--drift-x)), calc(-50% + var(--end-y) - var(--drift-y))) scale(.97) rotate(-4deg); }
+    82% { opacity: .19; transform: translate(calc(-50% + var(--end-x)), calc(-50% + var(--end-y))) scale(1) rotate(0); }
+    95%, 100% { opacity: 0; transform: translate(calc(-50% + var(--end-x)), calc(-50% + var(--end-y))) scale(.82) rotate(-5deg); }
+  }
+  @keyframes icon-cluster-orbit { 0% { transform: rotate(0); } 8.333%, 100% { transform: rotate(360deg); } }
+  @keyframes card-enter { 0%, 5% { opacity: 0; transform: translateY(15px) scale(.98); } 12%, 87% { opacity: 1; transform: translateY(0) scale(1); } 95%, 100% { opacity: 0; transform: translateY(-8px) scale(.985); } }
+  @keyframes signal { 0%, 100% { transform: scale(.85); box-shadow: 0 0 0 .23rem rgb(229 0 126 / 10%); } 50% { transform: scale(1.15); box-shadow: 0 0 0 .42rem rgb(229 0 126 / 2%); } }
+  @keyframes qr-pulse { 0%, 100% { transform: scale(1) rotate(0); box-shadow: 0 .7rem 1.7rem rgb(7 84 132 / 9%); } 30% { transform: scale(1.025) rotate(-.4deg); box-shadow: 0 1rem 2.2rem rgb(7 84 132 / 16%); } 62% { transform: scale(.995) rotate(.35deg); } }
+  @keyframes qr-shine { 0%, 16% { background-position: -140% 0; opacity: 0; } 22% { opacity: 1; } 40%, 100% { background-position: 260% 0; opacity: 0; } }
+
+  :global(html[data-theme="dark"]) :global(body) { background: #062b46; color: #dcefff; }
+  :global(html[data-theme="dark"]) .stage { background: radial-gradient(circle at 50% 45%, #0d496e 0, #082f4d 54%, #041f35 100%); }
+  :global(html[data-theme="dark"]) .access-card { border-color: rgb(179 223 246 / 20%); background: rgb(5 43 69 / 78%); box-shadow: 0 1.4rem 3.8rem rgb(0 0 0 / 27%), inset 0 1px 0 rgb(190 232 255 / 12%); }
+  :global(html[data-theme="dark"]) h1 { color: #e4f5ff; } :global(html[data-theme="dark"]) .intro > p:last-child, :global(html[data-theme="dark"]) .scan-note { color: rgb(222 241 255 / 76%); }
+  :global(html[data-theme="dark"]) .qr-shell { border-color: rgb(179 223 246 / 23%); box-shadow: 0 .7rem 1.7rem rgb(0 0 0 / 24%); }
+  :global(html[data-theme="dark"]) .culinary-icon { color: #b8c1c8 !important; filter: drop-shadow(0 .35rem .5rem rgb(0 0 0 / 22%)); }
+  :global(html[data-theme="dark"]) .start-button, :global(html[data-theme="dark"]) .theme-button { border-color: rgb(177 224 248 / 42%); background: rgb(5 43 69 / 74%); color: #e4f5ff; box-shadow: 0 .5rem 1.5rem rgb(0 0 0 / 18%); }
+  :global(html[data-theme="dark"]) .start-button:hover, :global(html[data-theme="dark"]) .theme-button:hover { border-color: #a9dff9; background: #0c527b; }
+  :global(html[data-theme="dark"]) .sun-icon { display: none; } :global(html[data-theme="dark"]) .moon-icon { display: block; }
+
+  @media (max-width: 520px) { .stage { padding: 1.25rem; } .rings { width: 104vw; } .access-card { border-radius: 1.4rem; } .start-button { right: 1rem; bottom: 1rem; } .theme-button { bottom: 1rem; left: 1rem; } }
+  @media (prefers-reduced-motion: reduce) { .orb, .rings, .culinary-icons, .culinary-icon, .access-card, .qr-shell, .qr-art, .qr-reflection, .scan-note span { animation: none; } .access-card, .qr-art { opacity: 1; } }
+</style>

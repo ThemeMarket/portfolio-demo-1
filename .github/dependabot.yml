@@ -1,0 +1,19 @@
+# Dependabot configuration for automated dependency updates
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "03:00"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "waltercode"
+    allow:
+      - dependency-type: "production"
+      - dependency-type: "development"
+    ignore:
+      # Add packages to ignore if needed
+      - dependency-name: "astro"
+        versions: ["5.x"]

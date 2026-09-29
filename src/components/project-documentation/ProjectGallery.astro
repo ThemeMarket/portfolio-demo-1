@@ -1,0 +1,86 @@
+---
+interface Image { src: string; alt: string; }
+interface Props { images: Image[]; }
+const { images } = Astro.props;
+---
+
+{images.length > 0 && (
+  <div class="group/gallery relative min-w-0 max-w-full overflow-hidden" data-gallery>
+    <div class="flex min-w-0 max-w-full snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-smooth rounded-lg pb-3 [scrollbar-width:thin]" data-gallery-track tabindex="0" aria-label="Galería del proyecto">
+      {images.map((image, index) => (
+        <figure class="basis-full shrink-0 snap-center">
+          <button type="button" class="block w-full cursor-zoom-in rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" data-gallery-open={index} aria-label={`Ampliar imagen ${index + 1}: ${image.alt}`}>
+            <img src={image.src} alt={image.alt} class="aspect-video w-full rounded-lg border border-gray-300 object-cover dark:border-neutral-800" width="960" height="540" loading="eager" />
+          </button>
+        </figure>
+      ))}
+    </div>
+    {images.length > 1 && (
+      <>
+        <div class="mt-3 flex items-center justify-between gap-4">
+          <div class="flex gap-2" aria-label="Indicadores de galería">
+            {images.map((_, index) => <button class="size-2.5 cursor-pointer rounded-full bg-gray-300 transition-colors first:bg-fuchsia-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-700 dark:bg-neutral-700 dark:first:bg-fuchsia-400" aria-label={`Ir a la imagen ${index + 1}`} data-gallery-dot={index}></button>)}
+          </div>
+        </div>
+        <script is:inline>
+          document.querySelectorAll("[data-gallery]").forEach((gallery) => {
+            const track = gallery.querySelector("[data-gallery-track]");
+            const dots = [...gallery.querySelectorAll("[data-gallery-dot]")];
+            const slides = [...(track?.querySelectorAll("figure") ?? [])];
+            if (!track) return;
+            let activeIndex = 0;
+            const goTo = (index) => {
+              activeIndex = Math.max(0, Math.min(slides.length - 1, index));
+              track.scrollTo({ left: slides[activeIndex]?.offsetLeft ?? 0, behavior: "smooth" });
+            };
+            dots.forEach((dot, index) => dot.addEventListener("click", () => goTo(index)));
+            track.addEventListener("scroll", () => {
+              activeIndex = slides.reduce((closest, slide, index) => Math.abs(slide.offsetLeft - track.scrollLeft) < Math.abs(slides[closest].offsetLeft - track.scrollLeft) ? index : closest, 0);
+              dots.forEach((dot, index) => dot.classList.toggle("!bg-fuchsia-700", index === activeIndex));
+            }, { passive: true });
+          });
+        </script>
+      </>
+    )}
+    <dialog class="m-auto h-fit max-h-[96vh] w-[min(96vw,1400px)] max-w-none overflow-hidden rounded-xl border border-gray-300 bg-white p-3 text-gray-950 shadow-2xl backdrop:bg-black/85 dark:border-neutral-700 dark:bg-gray-950 dark:text-white" data-gallery-dialog aria-label="Imagen ampliada de la galería">
+      <div class="flex items-center justify-end">
+        <button type="button" class="cursor-pointer rounded-full p-2 transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-700 dark:hover:bg-neutral-800" data-gallery-close aria-label="Cerrar imagen ampliada"><svg aria-hidden="true" class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </div>
+      <img class="mx-auto max-h-[82vh] max-w-full object-contain" data-gallery-modal-image alt="" />
+      {images.length > 1 && <div class="mt-3 flex items-center justify-between gap-3"><button type="button" class="cursor-pointer rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 dark:border-neutral-700 dark:hover:bg-neutral-800" data-gallery-modal-prev>Anterior</button><span class="text-sm text-gray-600 dark:text-gray-400" data-gallery-modal-count></span><button type="button" class="cursor-pointer rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 dark:border-neutral-700 dark:hover:bg-neutral-800" data-gallery-modal-next>Siguiente</button></div>}
+    </dialog>
+    <script is:inline>
+      document.querySelectorAll("[data-gallery]").forEach((gallery) => {
+        const track = gallery.querySelector("[data-gallery-track]");
+        const slides = [...(track?.querySelectorAll("figure") ?? [])];
+        const dialog = gallery.querySelector("[data-gallery-dialog]");
+        const modalImage = gallery.querySelector("[data-gallery-modal-image]");
+        const modalCount = gallery.querySelector("[data-gallery-modal-count]");
+        if (!track || !dialog || !modalImage) return;
+        let activeIndex = 0;
+        const showImage = (index) => {
+          activeIndex = (index + slides.length) % slides.length;
+          const image = slides[activeIndex]?.querySelector("img");
+          if (!image) return;
+          modalImage.src = image.currentSrc || image.src;
+          modalImage.alt = image.alt;
+          if (modalCount) modalCount.textContent = `${activeIndex + 1} / ${slides.length}`;
+        };
+        gallery.querySelectorAll("[data-gallery-open]").forEach((button, index) => button.addEventListener("click", () => {
+          showImage(index);
+          dialog.showModal();
+        }));
+        gallery.querySelector("[data-gallery-close]")?.addEventListener("click", () => dialog.close());
+        gallery.querySelector("[data-gallery-modal-prev]")?.addEventListener("click", () => showImage(activeIndex - 1));
+        gallery.querySelector("[data-gallery-modal-next]")?.addEventListener("click", () => showImage(activeIndex + 1));
+        dialog.addEventListener("click", (event) => {
+          if (event.target === dialog) dialog.close();
+        });
+        dialog.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowLeft") showImage(activeIndex - 1);
+          if (event.key === "ArrowRight") showImage(activeIndex + 1);
+        });
+      });
+    </script>
+  </div>
+)}

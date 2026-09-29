@@ -1,0 +1,65 @@
+---
+interface Item { id: string; label: string; icon: string; }
+interface Props { items: Item[]; }
+const { items } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const iconPaths: Record<string, string> = {
+  context: "M4 5h16v14H4zM8 9h8M8 13h5",
+  history: "M12 8v5l3 2M4.9 6.5A9 9 0 1 1 3 12M3 5v4h4",
+  target: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0-4a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-3a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z",
+  institution: "M3 10h18M5 10v8m4-8v8m6-8v8m4-8v8M3 21h18M12 3 3 8h18z",
+  results: "M5 20V10m7 10V4m7 16v-7",
+  resources: "M7 3h7l4 4v14H7zM14 3v5h5M9.5 13h5M9.5 16.5h5",
+};
+---
+
+<nav aria-label="Contenido de HoteleríaTec" class="sticky top-3 z-20 -mx-2 overflow-x-auto rounded-2xl border border-gray-300/80 bg-white/90 p-2 shadow-sm backdrop-blur-md [scrollbar-width:none] sm:mx-0 dark:border-neutral-800 dark:bg-gray-950/90 [&::-webkit-scrollbar]:hidden">
+  <ul class="flex w-full min-w-max items-center gap-1">
+    {items.map((item) => (
+      <li>
+        <button type="button" aria-controls={`panel-${item.id}`} aria-expanded={item.id === items[0].id ? "true" : "false"} data-project-nav={item.id} class="flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-gray-600 transition-all duration-300 hover:bg-fuchsia-50 hover:text-fuchsia-800 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-fuchsia-700 aria-[expanded=true]:bg-fuchsia-700 aria-[expanded=true]:text-white dark:text-gray-300 dark:hover:bg-fuchsia-950/40 dark:hover:text-fuchsia-300 dark:aria-[expanded=true]:bg-fuchsia-700 dark:aria-[expanded=true]:text-white">
+          <svg aria-hidden="true" class="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d={iconPaths[item.icon]} /></svg>
+          <span>{item.label}</span>
+        </button>
+      </li>
+    ))}
+    <li class="ml-auto border-l border-gray-200 pl-2 dark:border-neutral-800">
+      <a
+        href={`${base}events/hoteleriatec/welcome/`}
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Ver animación de HoteleríaTec"
+        aria-label="Abrir animación del logo de HoteleríaTec en una pestaña nueva"
+        class="group flex size-10 items-center justify-center rounded-xl border border-fuchsia-200 bg-fuchsia-50 text-fuchsia-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-fuchsia-300 hover:bg-fuchsia-100 hover:text-fuchsia-800 hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-fuchsia-700 dark:border-fuchsia-900/60 dark:bg-fuchsia-950/30 dark:text-fuchsia-300 dark:hover:border-fuchsia-800 dark:hover:bg-fuchsia-950/60"
+      >
+        <svg aria-hidden="true" class="size-5 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3 9.8 8.8 4 11l5.8 2.2L12 19l2.2-5.8L20 11l-5.8-2.2L12 3Z" />
+          <path d="m19 3 .7 1.8L21.5 5.5l-1.8.7L19 8l-.7-1.8-1.8-.7 1.8-.7L19 3Z" />
+        </svg>
+        <span class="sr-only">Ver animación de HoteleríaTec</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<script>
+  const initProjectSubnav = () => {
+    const buttons = [...document.querySelectorAll<HTMLButtonElement>("[data-project-nav]")];
+    const panels = [...document.querySelectorAll<HTMLElement>("[data-project-panel]")];
+    if (!buttons.length || !panels.length) return;
+
+    const showPanel = (id: string) => {
+      buttons.forEach((button) => button.setAttribute("aria-expanded", String(button.dataset.projectNav === id)));
+      panels.forEach((panel) => {
+        const active = panel.dataset.projectPanel === id;
+        panel.hidden = !active;
+        panel.classList.toggle("is-active", active);
+      });
+    };
+
+    buttons.forEach((button) => button.addEventListener("click", () => showPanel(button.dataset.projectNav ?? "")));
+    showPanel(buttons.find((button) => button.getAttribute("aria-expanded") === "true")?.dataset.projectNav ?? buttons[0].dataset.projectNav ?? "");
+  };
+  initProjectSubnav();
+  document.addEventListener("astro:page-load", initProjectSubnav);
+</script>

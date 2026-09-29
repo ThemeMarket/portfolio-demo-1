@@ -1,0 +1,16 @@
+---
+interface Collaborator { name: string; role: string; details: string; image?: string; }
+interface Props { collaborators: Collaborator[]; compact?: boolean; }
+const { collaborators, compact = false } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const asset = (path: string) => `${base}${path.replace(/^\//, "")}`;
+---
+
+<div class:list={["grid grid-cols-1 gap-4", !compact && "sm:grid-cols-2"]}>
+  {collaborators.map((collaborator) => (
+    <article class="flex gap-4 rounded-lg border border-gray-300 bg-white p-5 dark:border-neutral-800 dark:bg-gray-950/30">
+      {collaborator.image ? <img src={asset(collaborator.image)} alt={collaborator.name} class="size-12 rounded-full object-cover" width="48" height="48" loading="lazy" /> : <span aria-hidden="true" class="flex size-12 shrink-0 items-center justify-center rounded-full bg-blue-50 font-bold text-blue-700 dark:bg-blue-950/30 dark:text-blue-400">{collaborator.name.charAt(0)}</span>}
+      <div><h3 class="font-semibold text-gray-950 dark:text-white">{collaborator.name}</h3><p class="text-sm font-medium text-blue-700 dark:text-blue-400">{collaborator.role}</p><p class="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-400">{collaborator.details}</p></div>
+    </article>
+  ))}
+</div>

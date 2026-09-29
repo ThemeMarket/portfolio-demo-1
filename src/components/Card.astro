@@ -9,7 +9,7 @@ const splitClasses = className.split(" ");
 ---
 
 <div
-  class="rounded-md p-6 w-full border border-gray-300 dark:border-neutral-800 flex flex-col gap-2 bg-white shadow-sm dark:bg-gray-950/30"
+  class="reveal-card rounded-md p-6 w-full border border-gray-300 dark:border-neutral-800 flex flex-col gap-2 bg-white shadow-sm dark:bg-gray-950/30 transition-[opacity,transform,box-shadow,border-color] duration-700 hover:shadow-md hover:border-gray-400 dark:hover:border-neutral-700"
   class:list={splitClasses}
 >
   <slot />

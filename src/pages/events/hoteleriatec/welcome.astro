@@ -1,0 +1,226 @@
+---
+const base = import.meta.env.BASE_URL;
+const logo = `${base}projects/logos/hoteleriatec.svg`;
+export const prerender = true;
+---
+
+<!doctype html>
+<html lang="es" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light" />
+    <meta name="robots" content="noindex" />
+    <title>HoteleríaTec — Bienvenida</title>
+  </head>
+  <body>
+    <main class="stage" aria-label="Animación del logo de HoteleríaTec">
+      <div class="ambient ambient-one" aria-hidden="true"></div>
+      <div class="ambient ambient-two" aria-hidden="true"></div>
+      <div class="halo" aria-hidden="true"></div>
+
+      <div class="culinary-icons" aria-hidden="true">
+        <svg class="culinary-icon icon-cloche" viewBox="0 0 64 64"><path d="M8 46h48M14 42a18 18 0 0 1 36 0M32 20v-4M27 16h10" /></svg>
+        <svg class="culinary-icon icon-cutlery" viewBox="0 0 64 64"><path d="M17 8v18M11 8v12c0 5 3 7 6 7s6-2 6-7V8M17 27v29M43 56V34M43 34c7-4 8-17 3-26-5 4-7 13-7 19 0 4 2 6 4 7Z" /></svg>
+        <svg class="culinary-icon icon-bread" viewBox="0 0 64 64"><path d="M14 49c-8-5-8-17 1-21 1-10 13-15 21-9 9-2 17 5 16 14 7 7 2 18-7 18H19c-2 0-4-1-5-2ZM24 26l4 7M35 23l4 7" /></svg>
+        <svg class="culinary-icon icon-whisk" viewBox="0 0 64 64"><path d="m19 50 9-9M17 55l5-5M30 40c-8-3-13-14-8-19 5-5 16 0 19 8M30 40c3 3 7 2 10-1 3-3 4-7 1-10M30 40c-3-8 0-18 6-19 6-1 10 9 5 18" /></svg>
+        <svg class="culinary-icon icon-cup" viewBox="0 0 64 64"><path d="M13 24h34v12c0 10-7 17-17 17S13 46 13 36V24ZM47 29h3c8 0 8 12 0 12h-4M23 17c-3-3 3-5 0-9M34 17c-3-3 3-5 0-9" /></svg>
+        <svg class="culinary-icon icon-cake" viewBox="0 0 64 64"><path d="M12 31h40v23H12zM12 40c5 4 8-4 13 0s8-4 13 0 8-4 14 0M20 31V20h24v11M25 20v-7M39 20v-7" /></svg>
+      </div>
+
+      <div class="logo-scene">
+        <div class="logo-frame" style={`--logo-mask: url("${logo}")`}>
+          <img src={logo} alt="HoteleríaTec" width="766" height="157" />
+          <span class="shine" aria-hidden="true"></span>
+        </div>
+        <div class="progress" aria-hidden="true"><span></span></div>
+      </div>
+
+      <a class="start-button" href={`${base}events/hoteleriatec/`}>
+        <span>Iniciar</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M13 6l6 6-6 6" />
+        </svg>
+      </a>
+    </main>
+  </body>
+</html>
+
+<style>
+  :global(*) { box-sizing: border-box; }
+  :global(html), :global(body) { margin: 0; min-height: 100%; }
+  :global(body) {
+    overflow: hidden;
+    background: #fff;
+    color: #075484;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  .stage {
+    position: relative;
+    display: grid;
+    min-height: 100svh;
+    place-items: center;
+    isolation: isolate;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 46%, rgb(255 255 255 / 100%) 0 18%, rgb(249 252 255 / 96%) 58%, #f7faff 100%);
+  }
+
+  .ambient {
+    position: absolute;
+    z-index: -2;
+    width: min(42rem, 75vw);
+    aspect-ratio: 1;
+    border-radius: 999px;
+    filter: blur(90px);
+    opacity: .12;
+    animation: drift 10s ease-in-out infinite alternate;
+  }
+  .ambient-one { top: -25%; left: -12%; background: #e5007e; }
+  .ambient-two { right: -12%; bottom: -28%; background: #075484; animation-delay: -5s; }
+
+  .halo {
+    position: absolute;
+    z-index: -1;
+    width: min(46rem, 86vw);
+    aspect-ratio: 1;
+    border: 1px solid rgb(7 84 132 / 8%);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4rem rgb(7 84 132 / 2.5%), 0 0 0 8rem rgb(229 0 126 / 1.5%);
+    animation: halo 8s cubic-bezier(.4, 0, .2, 1) infinite;
+  }
+
+  .culinary-icons { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+  .culinary-icon {
+    position: absolute;
+    width: clamp(2.8rem, 5vw, 4.8rem);
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: .15;
+    animation: icon-float 12s ease-in-out infinite alternate;
+  }
+  .icon-cloche { top: 15%; left: 10%; color: #075484; transform: rotate(-8deg); }
+  .icon-cutlery { top: 16%; right: 12%; color: #e5007e; animation-delay: -3s; }
+  .icon-bread { bottom: 15%; left: 14%; color: #e5007e; animation-delay: -7s; }
+  .icon-whisk { right: 9%; bottom: 14%; color: #075484; transform: rotate(10deg); animation-delay: -5s; }
+  .icon-cup { top: 48%; left: 4%; color: #075484; animation-delay: -9s; }
+  .icon-cake { top: 49%; right: 4%; color: #e5007e; animation-delay: -1s; }
+
+  .logo-scene {
+    display: flex;
+    width: min(48rem, 82vw);
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .logo-frame {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    filter: drop-shadow(0 1.2rem 2.2rem rgb(7 84 132 / 10%));
+    animation: reveal 8s cubic-bezier(.22, 1, .36, 1) infinite;
+  }
+  .logo-frame img { display: block; width: 100%; height: auto; }
+
+  .shine {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 38%, rgb(255 255 255 / 88%) 49%, transparent 60%) -160% 0 / 45% 100% no-repeat;
+    -webkit-mask: var(--logo-mask) center / contain no-repeat;
+    mask: var(--logo-mask) center / contain no-repeat;
+    animation: shine 8s ease-in-out infinite;
+  }
+
+  .progress {
+    width: min(10rem, 34vw);
+    height: 3px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgb(7 84 132 / 9%);
+  }
+  .progress span {
+    display: block;
+    width: 42%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #075484, #e5007e);
+    animation: progress 1.8s ease-in-out infinite;
+  }
+
+  .start-button {
+    position: fixed;
+    right: clamp(1.25rem, 3vw, 2.5rem);
+    bottom: max(clamp(1.25rem, 3vw, 2.5rem), env(safe-area-inset-bottom));
+    z-index: 10;
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: .65rem;
+    border: 1px solid rgb(7 84 132 / 48%);
+    border-radius: .8rem;
+    padding: .7rem 1rem .7rem 1.1rem;
+    background: rgb(255 255 255 / 72%);
+    color: #075484;
+    font-size: .9rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 .5rem 1.5rem rgb(7 84 132 / 7%);
+    backdrop-filter: blur(12px);
+    transition: transform .25s ease, border-color .25s ease, background-color .25s ease, box-shadow .25s ease;
+  }
+  .start-button svg { width: 1rem; height: 1rem; transition: transform .25s ease; }
+  .start-button:hover {
+    transform: translateY(-2px);
+    border-color: #075484;
+    background: #fff;
+    box-shadow: 0 .75rem 1.8rem rgb(7 84 132 / 12%);
+  }
+  .start-button:hover svg { transform: translateX(3px); }
+  .start-button:focus-visible { outline: 2px solid #e5007e; outline-offset: 4px; }
+
+  @keyframes reveal {
+    0% { opacity: 0; transform: translateY(8px) scale(.985); filter: blur(6px) drop-shadow(0 1.2rem 2.2rem rgb(7 84 132 / 0%)); }
+    16%, 76% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0) drop-shadow(0 1.2rem 2.2rem rgb(7 84 132 / 9%)); }
+    88% { opacity: 1; transform: translateY(-1px) scale(1.003); }
+    100% { opacity: 0; transform: translateY(-5px) scale(.993); filter: blur(4px) drop-shadow(0 1.2rem 2.2rem rgb(7 84 132 / 0%)); }
+  }
+  @keyframes shine {
+    0%, 24% { background-position: -160% 0; opacity: 0; }
+    31% { opacity: .85; }
+    48%, 100% { background-position: 260% 0; opacity: 0; }
+  }
+  @keyframes halo {
+    0%, 100% { opacity: .35; transform: scale(.9); }
+    50% { opacity: .85; transform: scale(1.04); }
+  }
+  @keyframes progress {
+    0% { transform: translateX(-115%); }
+    50% { transform: translateX(70%); }
+    100% { transform: translateX(240%); }
+  }
+  @keyframes drift {
+    from { transform: translate3d(-2%, -1%, 0) scale(.94); }
+    to { transform: translate3d(4%, 3%, 0) scale(1.08); }
+  }
+  @keyframes icon-float {
+    from { translate: 0 -4px; rotate: -2deg; }
+    to { translate: 0 8px; rotate: 3deg; }
+  }
+
+  @media (max-width: 520px) {
+    .logo-scene { width: 88vw; }
+    .halo { width: 100vw; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ambient, .halo, .culinary-icon, .logo-frame, .shine, .progress span { animation: none; }
+    .logo-frame { opacity: 1; }
+    .progress { display: none; }
+  }
+</style>

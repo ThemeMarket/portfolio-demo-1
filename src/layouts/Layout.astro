@@ -1,24 +1,55 @@
 ---
 import background from "../assets/background.svg";
+import logo from "../assets/logoport.svg";
 import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
 import "../styles/global.css";
+
+interface Props {
+  eventMode?: boolean;
+}
+
+const { eventMode = false } = Astro.props;
+const title = "Walter Joel Castil Corea | Ingeniero en Sistemas";
+const description = "Portafolio de Walter Joel Castil Corea, Ingeniero en Sistemas de Información especializado en desarrollo web y automatización.";
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const socialImage = new URL(`${import.meta.env.BASE_URL}social-preview.png`, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/webp" href="/logo.webp" />
+    <link rel="icon" type="image/svg+xml" href={logo.src} />
     <meta name="generator" content={Astro.generator} />
-    <title>PortfolioDemo1</title>
+    <title>{title}</title>
 
     <!-- Metas -->
     <meta
       name="description"
-      content="A small minimalist web developer portfolio built with Astro and TailwindCSS"
+      content={description}
     />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_NI" />
+    <meta property="og:site_name" content="Portafolio de Walter Corea" />
+    <meta property="og:title" content="Walter Joel Castil Corea" />
+    <meta property="og:description" content="Ingeniero en Sistemas de Información" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:secure_url" content={socialImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Walter Joel Castil Corea — Ingeniero en Sistemas de Información" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Walter Joel Castil Corea" />
+    <meta name="twitter:description" content="Ingeniero en Sistemas de Información" />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content="Walter Joel Castil Corea — Ingeniero en Sistemas de Información" />
   </head>
   <body class="dark:bg-gray-950">
     <img
@@ -27,11 +58,26 @@ import "../styles/global.css";
       alt=""
       fetchpriority="high"
     />
-    <Navbar />
+    <Navbar eventMode={eventMode} />
     <main class="max-w-screen-lg mx-auto p-6 flex flex-col gap-12">
       <slot />
     </main>
     <Footer />
+    <script is:inline>
+      const revealCards = () => {
+        const cards = document.querySelectorAll(".reveal-card, .reveal-section");
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          cards.forEach((card) => card.classList.add("is-visible"));
+          return;
+        }
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => entry.target.classList.toggle("is-visible", entry.isIntersecting));
+        }, { threshold: 0.12, rootMargin: "0px 0px -32px" });
+        cards.forEach((card) => observer.observe(card));
+      };
+      revealCards();
+      document.addEventListener("astro:page-load", revealCards);
+    </script>
   </body>
   <style is:global>
     * {
